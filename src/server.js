@@ -29,4 +29,5 @@ Nếu không có, dùng mặc định là 6969.*/
 app.listen(port, () => {
     //callback
     console.log(`Backend Nodejs is running on port: ${port}`);
+    console.log("hello");
 });
