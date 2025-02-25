@@ -1,0 +1,11 @@
+body-parser: thư viện để truyền api
+dotevn: thư viện giấu tên 1 số file , cấu hình tham số môi trường
+label: complier biên dịch ngôn ngữ js nên code version nào của js cũng được
+nodemon: server tự động restart khi có thay đổi
+--save-dev: để thư viện vào dev dependencies: môi trường phát triển.
+
+Trong file gitignore: file trong gitignore sẽ k được tải lên trên github
+    vendor: dùng cho php, lavarel
+    idea: thư mục chứa cache của webstorm 
+    -> 2 cái này không có trong dự án cũng được 
+File trong env ko được show ra
