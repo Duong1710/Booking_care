@@ -9,3 +9,7 @@ Trong file gitignore: file trong gitignore sẽ k được tải lên trên gith
     idea: thư mục chứa cache của webstorm 
     -> 2 cái này không có trong dự án cũng được 
 File trong env ko được show ra
+
+thư viện sequelize cli: cung cấp câu lệnh thao tác với cơ sở dữ liệu
+npx sequelize-cli init: cài cấu hình cho cơ sở dữ liệu
+tạo tables (migration), thêm dữ liệu (seeder) bằng Sequelize-CLI vào cơ sở dữ liệu MySQL.
