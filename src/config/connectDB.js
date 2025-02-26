@@ -3,7 +3,8 @@ const { Sequelize } = require('sequelize');
 // Hàm kết nối với Database
 const sequelize = new Sequelize('hoidanit', 'root', null, {
     host: 'localhost', // Địa chỉ server
-    dialect: 'mysql'
+    dialect: 'mysql',
+    logging: false // + logging = false trong config.json để rút ngắn thông báo hiện dưới terminal thôi
 });
 
 //Hàm check kết nối thành công
