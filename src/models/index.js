@@ -1,5 +1,6 @@
 'use strict';
-
+import dotenv from "dotenv";
+dotenv.config();// Sử dụng được câu lệnh process.env.PORT
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');

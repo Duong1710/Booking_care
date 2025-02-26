@@ -10,6 +10,12 @@ Trong file gitignore: file trong gitignore sẽ k được tải lên trên gith
     -> 2 cái này không có trong dự án cũng được 
 File trong env ko được show ra
 
+
+Tại sao sử dụng sequelize
+Sequelize là một ORM (Object Relational Mapping) dành cho Nodejs và TypeScript, giúp Developer tương tác với 
+cơ sở dữ liệu SQL một cách dễ dàng thông qua các phương thức JavaScript mà không cần viết câu lệnh SQL thuần.
+
 thư viện sequelize cli: cung cấp câu lệnh thao tác với cơ sở dữ liệu
 npx sequelize-cli init: cài cấu hình cho cơ sở dữ liệu
+
 tạo tables (migration), thêm dữ liệu (seeder) bằng Sequelize-CLI vào cơ sở dữ liệu MySQL.
