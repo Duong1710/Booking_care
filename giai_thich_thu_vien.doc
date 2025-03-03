@@ -18,4 +18,7 @@ cơ sở dữ liệu SQL một cách dễ dàng thông qua các phương thức 
 thư viện sequelize cli: cung cấp câu lệnh thao tác với cơ sở dữ liệu
 npx sequelize-cli init: cài cấu hình cho cơ sở dữ liệu
 
-tạo tables (migration), thêm dữ liệu (seeder) bằng Sequelize-CLI vào cơ sở dữ liệu MySQL.
+Migrations giúp quản lý lịch sử thay đổi của database theo từng bước, giống như hệ thống "version control" của database.
+thêm dữ liệu (seeder) bằng Sequelize-CLI vào cơ sở dữ liệu MySQL.
+
+Khi bạn thay đổi bảng (thêm/xóa cột), thay vì sửa trực tiếp database, bạn tạo một migration để đảm bảo có thể rollback nếu cần.

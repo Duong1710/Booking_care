@@ -4,9 +4,9 @@ import db from "../models/index.js";
 
 let getHomePage = async (req, res) => {
     try {
-        let data = await db.User.findAll();
+        let data = await db.User.findAll(); // data đang ở dạng javascript nên có thể console.log ra nhìn được
         return res.render('homepage.ejs', {
-            data: JSON.stringify(data)
+            data: JSON.stringify(data) // chuyển thành 1 chuỗi JSON
         });
     } catch (error) {
         console.log(error);
