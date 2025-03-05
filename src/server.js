@@ -3,8 +3,8 @@ import bodyParser from "body-parser"; // Middleware giúp xử lý dữ liệu t
 import viewEngine from "./config/viewEngine"; // Cấu hình template engine để render HTML động
 import initWebRoutes from './route/web'; // File chứa định nghĩa các tuyến đường (routes)
 import dotenv from "dotenv";
+import connectDB from "./config/connectDB"; // Truyền hàm kết nối db vào trang chính
 dotenv.config();// Sử dụng được câu lệnh process.env.PORT
-import connectDB from "./config/connectDB";
 let app = express(); // Khởi tạo một ứng dụng Express.
 
 //CONFIG APP

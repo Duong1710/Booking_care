@@ -22,3 +22,7 @@ Migrations giúp quản lý lịch sử thay đổi của database theo từng b
 thêm dữ liệu (seeder) bằng Sequelize-CLI vào cơ sở dữ liệu MySQL.
 
 Khi bạn thay đổi bảng (thêm/xóa cột), thay vì sửa trực tiếp database, bạn tạo một migration để đảm bảo có thể rollback nếu cần.
+
+Folder Service:
+Thư viện bcryptjs trong Node.js được sử dụng để băm (hash) và kiểm tra mật khẩu một cách an toàn.
+Folder service sẽ tương tác trực tiếp với database
