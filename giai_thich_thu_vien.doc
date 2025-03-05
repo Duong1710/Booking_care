@@ -23,6 +23,14 @@ thêm dữ liệu (seeder) bằng Sequelize-CLI vào cơ sở dữ liệu MySQL.
 
 Khi bạn thay đổi bảng (thêm/xóa cột), thay vì sửa trực tiếp database, bạn tạo một migration để đảm bảo có thể rollback nếu cần.
 
-Folder Service:
+* Folder Service:
 Thư viện bcryptjs trong Node.js được sử dụng để băm (hash) và kiểm tra mật khẩu một cách an toàn.
 Folder service sẽ tương tác trực tiếp với database
+
+Sequelize ORM: CRUD (Create - Read - Update - Delete)
++ Hàm tạo: create
++ Hàm đọc: findall
+
+
+
+* Folder Controller: đóng vai trò như một folder điều hướng, mọi hành động sẽ do folder Service làm

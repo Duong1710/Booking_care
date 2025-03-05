@@ -25,13 +25,10 @@ let createNewUser = async (data) => {
             reject(error);
         }
     })
-    let hashPasswordFromBcrypt = await hashUserPassword(data.password);
-    console.log("data from service");
-    console.log(data);
-    console.log(hashPasswordFromBcrypt);
 }
+
 let hashUserPassword = (password) => {
-    // Promise để chắc chắn hàm sẽ chạy
+    // Promise để chắc chắn hàm sẽ chạy: hàm này sẽ bảo nodejs rằng m phải chạy tao xog rồi mới chạy cái khác
     return new Promise(async (resolve, reject) => {
         try {
             let hashPassword = await bcrypt.hashSync(password, salt); // thay đổi, pump password
@@ -41,6 +38,20 @@ let hashUserPassword = (password) => {
         }
     })
 }
+
+let getAllUser = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let users = db.User.findAll({
+                raw: true, // Hiển thị dữ liệu duy nhất thôi, không bị lan man dữ liệu
+            });
+            resolve(users);
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
 module.exports = {
     createNewUser: createNewUser,
+    getAllUser: getAllUser
 }

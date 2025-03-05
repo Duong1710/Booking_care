@@ -27,10 +27,21 @@ let postCRUD = async (req, res) => {
     console.log(message);
     return res.send("postcrud form server");
 }
+
+let displayGetCRUD = async (req, res) => {
+    let data = await CRUDService.getAllUser();
+    console.log("--------------------------------------");
+    console.log(data);
+    console.log("--------------------------------------");
+    return res.render('displayCRUD.ejs', {
+        dataTable: data
+    });
+}
 // export là khai báo biến bằng giá trị kia: key - value
 module.exports = {
     getHomePage: getHomePage,
     getAboutPage: getAboutPage,
     getCRUD: getCRUD,
-    postCRUD: postCRUD
+    postCRUD: postCRUD,
+    displayGetCRUD: displayGetCRUD
 }
