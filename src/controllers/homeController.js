@@ -56,7 +56,16 @@ let putCRUD = async (req, res) => {
     return res.redirect("/get-crud");
 }
 
-
+let deleteCRUD = async (req, res) => {
+    let id = req.query.id;
+    if (id) {
+        await CRUDService.deleteUserById(id);
+        return res.redirect("/get-crud");
+    }
+    else {
+        return res.send("Id not available");
+    }
+}
 
 // export là khai báo biến bằng giá trị kia: key - value
 module.exports = {
@@ -66,5 +75,6 @@ module.exports = {
     postCRUD: postCRUD,
     displayGetCRUD: displayGetCRUD,
     getEditCRUD: getEditCRUD,
-    putCRUD: putCRUD
+    putCRUD: putCRUD,
+    deleteCRUD: deleteCRUD
 }

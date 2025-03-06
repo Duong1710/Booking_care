@@ -65,7 +65,8 @@
                 </td>
                 <td>
                     <a href="/edit-crud?id=<%= dataTable[i].id %>" class="btn-edit" type="button">Edit</a>
-                    <a class="btn-delete" type="button">Delete</a>
+                    <a href="/delete-crud?id=<%= dataTable[i].id %>" class="btn-delete" type="button">Delete</a>
+                    <!-- Đối với thẻ a thì phương thức sẽ luôn là get -> trong router cũng phải để là get chứ không phải post hay put -->
                 </td>
             </tr>
             <% } %>
