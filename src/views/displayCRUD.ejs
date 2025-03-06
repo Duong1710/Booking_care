@@ -12,6 +12,28 @@
             border: 1px solid black;
             border-collapse: collapse;
         }
+
+        .btn-edit {
+            height: 25px;
+            background: orange;
+            border: none;
+            outline: none;
+            margin: 5px;
+            width: 60px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .btn-delete {
+            height: 25px;
+            background: rgb(221, 134, 108);
+            border: none;
+            outline: none;
+            margin: 5px;
+            width: 60px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -22,6 +44,7 @@
             <th>Firstname</th>
             <th>Lastname</th>
             <th>Address</th>
+            <th>Actions</th>
         </tr>
         <!-- <% %>: Cấu trúc của ejs
         <%= %>: Cấu trúc để hiển thị ra giá trị -->
@@ -39,6 +62,10 @@
                 </td>
                 <td>
                     <%= dataTable[i].address %>
+                </td>
+                <td>
+                    <a href="/edit-crud?id=<%= dataTable[i].id %>" class="btn-edit" type="button">Edit</a>
+                    <a class="btn-delete" type="button">Delete</a>
                 </td>
             </tr>
             <% } %>
