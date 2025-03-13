@@ -1,5 +1,6 @@
 import express from "express";
-import homeController, { getHomePage } from "../controllers/homeController";
+import homeController from "../controllers/homeController";
+import userController from "../controllers/userController";
 
 let router = express.Router();
 //express.Router() tạo một bộ định tuyến để quản lý các tuyến đường.
@@ -13,6 +14,11 @@ let initWebRoutes = (app) => {
     router.get("/edit-crud", homeController.getEditCRUD);
     router.post("/put-crud", homeController.putCRUD);
     router.get("/delete-crud", homeController.deleteCRUD);
+
+    // Tương tác với frontend
+    router.post("/api/login", userController.handleLogin)
+
+
     return app.use("/", router); // Gắn tất cả các route vào ứng dụng Express.
 }
 

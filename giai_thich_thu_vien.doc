@@ -31,6 +31,12 @@ Sequelize ORM: CRUD (Create - Read - Update - Delete)
 + Hàm tạo: create
 + Hàm đọc: findall
 
+* Folder Controller: đóng vai trò như một folder điều hướng, mọi hành động sẽ do folder Service làm.
 
+- 1 số khái niệm:
+    + API: cứ hiểu là như 1 đường link trên sever, gọi đường link sẽ trả về data
+    + Postman: app render dữ liệu từ 1 đường link về dạng json cho dễ nhìn
 
-* Folder Controller: đóng vai trò như một folder điều hướng, mọi hành động sẽ do folder Service làm
+-router.post("/api/login", userController.handleLogin) trong web.js là để tương tác với front-end
+file userController.handleLogin kết hợp với userService.handleUserLogin để xử lý xem email mình nhập vào đã có trong cơ sở dữ liệu chưa (xác nhận email nhập vào là đúng)
+
