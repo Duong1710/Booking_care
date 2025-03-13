@@ -10,7 +10,7 @@ let handleLogin = async (req, res) => {
         })
     }
     let userData = await userService.handleUserLogin(email, password);
-    return res.status(200).json({
+    return res.status(200).json({ // Trả về thông tin của user - lấy qua api (router) trong postman
         errCode: userData.errCode,
         message: userData.errMessage,
         user: userData.user ? userData.user : {}
