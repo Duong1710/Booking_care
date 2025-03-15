@@ -4,11 +4,12 @@ import viewEngine from "./config/viewEngine"; // Cấu hình template engine đ�
 import initWebRoutes from './route/web'; // File chứa định nghĩa các tuyến đường (routes)
 import dotenv from "dotenv";
 import connectDB from "./config/connectDB"; // Truyền hàm kết nối db vào trang chính
+import cors from "cors"; // thư viện chia sẻ api giữa BE và FE
 dotenv.config();// Sử dụng được câu lệnh process.env.PORT
 let app = express(); // Khởi tạo một ứng dụng Express.
 
 //CONFIG APP
-
+app.use(cors({ credentials: true, origin: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 /*bodyParser.json(): Cho phép server đọc dữ liệu JSON từ req.body.
