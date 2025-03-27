@@ -17,7 +17,7 @@ let initWebRoutes = (app) => {
 
     // Tương tác với frontend
     router.post("/api/login", userController.handleLogin)
-
+    router.get("/api/get-all-users", userController.handleGetAllUsers);
 
     return app.use("/", router); // Gắn tất cả các route vào ứng dụng Express.
 }

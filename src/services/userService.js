@@ -65,10 +65,38 @@ let checkUserEmail = (userEmail) => {
     })
 }
 
-
+let getAllUsers = (userId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let users = 'abc';
+            if (userId === "ALL") {
+                users = await db.User.findAll({
+                    attributes: {
+                        exclude: ['password']
+                    }
+                    // raw: true 
+                    // để hiển thị thông tin chính khi console.log(users) trong file userControler.getAllUsers thôi nhưng sau này không cần vì để config trong file config.json query trả về raw: true
+                })
+            }
+            if (userId && userId !== "ALL") {
+                users = await db.User.findOne({
+                    where: { id: userId }, // idl trong db bằng id truyền vào thì tìm được
+                    attributes: {
+                        exclude: ['password']
+                    }
+                    // raw: true 
+                    // để hiển thị thông tin chính khi console.log(users) trong file userControler.getAllUsers thôi nhưng sau này không cần vì để config trong file config.json query trả về raw: true
+                })
+            }
+            resolve(users)
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
 
 
 module.exports = {
     handleUserLogin: handleUserLogin,
-
+    getAllUsers: getAllUsers
 }
