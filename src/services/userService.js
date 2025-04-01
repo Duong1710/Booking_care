@@ -1,6 +1,20 @@
 
 import db from "../models/index.js";
 import bcrypt from "bcryptjs"; // import thư viện
+const salt = bcrypt.genSaltSync(10); // câu lệnh để harsh password
+let hashUserPassword = (password) => {
+    // Promise để chắc chắn hàm sẽ chạy: hàm này sẽ bảo nodejs rằng m phải chạy tao xog rồi mới chạy cái khác
+    return new Promise(async (resolve, reject) => {
+        try {
+            let hashPassword = await bcrypt.hashSync(password, salt); // thay đổi, pump password
+            resolve(hashPassword); // Trả về password
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+
 let handleUserLogin = (email, password) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -95,8 +109,107 @@ let getAllUsers = (userId) => {
     })
 }
 
+let createNewUser = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            //check email có tồn tại không đã
+            let check = await checkUserEmail(data.email);
+            if (check === true) {
+                resolve({
+                    errCode: 1,
+                    message: "Email is already existed, please try another one"
+                })
+            }
+            else {
+                let hashPasswordFromBcrypt = await hashUserPassword(data.password);
+                await db.User.create({
+                    email: data.email,
+                    password: hashPasswordFromBcrypt,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    address: data.address,
+                    phonenumber: data.phonenumber,
+                    gender: data.gender === '1' ? true : false,
+                    roleId: data.roleId
+                })
 
+                resolve({
+                    errCode: 0,
+                    message: 'OK'
+                });
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+let deleteUser = (userId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = await db.User.findOne({
+                where: { id: userId }
+            })
+            if (!user) {
+                resolve({
+                    errCode: 2,
+                    message: `This user is not exist`
+                })
+            }
+            else {
+                await db.User.destroy({
+                    where: { id: userId }
+                })
+                resolve({
+                    errCode: 0,
+                    message: `This user is deleted`
+                })
+            }
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+let updateUserData = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!data.id) {
+                resolve({
+                    errCode: 3,
+                    errMessage: "Missing input id"
+                })
+            }
+            let user = await db.User.findOne({
+                where: { id: data.id },
+                raw: false
+            })
+            if (user) {
+                user.firstName = data.firstName;
+                user.lastName = data.lastName;
+                user.address = data.address;
+                await user.save();
+                /* hàm có sẵn của sequelize, chỉ hoạt động khi raw để là false (mặc định của squelize),
+                 trong khi bài chúng ta đang cấu hình raw: true trong file config nên chúng ta thêm raw: false ở đoạn tìm user */
+                resolve({
+                    errCode: 0,
+                    message: `Update user is completed`
+                });
+            }
+            else {
+                resolve({
+                    errCode: 1,
+                    errMessage: `User is not found`
+                });
+            }
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
 module.exports = {
     handleUserLogin: handleUserLogin,
-    getAllUsers: getAllUsers
+    getAllUsers: getAllUsers,
+    createNewUser: createNewUser,
+    deleteUser: deleteUser,
+    updateUserData: updateUserData
 }

@@ -75,13 +75,17 @@ let updateUserData = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
             let user = await db.User.findOne({
-                where: { id: data.id }
+                where: { id: data.id },
+                raw: false
             })
             if (user) {
                 user.firstName = data.firstName;
                 user.lastName = data.lastName;
                 user.address = data.address;
-                await user.save(); // lưu lại trong database - đây là cú pháp update của sequelize
+                await user.save();
+                /* hàm có sẵn của sequelize, chỉ hoạt động khi raw để là false (mặc định của squelize),
+                 trong khi bài chúng ta đang cấu hình raw: true trong file config nên chúng ta thêm raw: false ở đoạn tìm user */
+                console.log(user)
                 resolve();
             }
             else {
@@ -100,7 +104,9 @@ let deleteUserById = (userId) => {
                 where: { id: userId }
             })
             if (user) {
-                await user.destroy();
+                await db.User.destroy({
+                    where: { id: userId }
+                })
             }
             resolve(); // return;
         } catch (error) {
@@ -116,5 +122,5 @@ module.exports = {
     getAllUser: getAllUser,
     getUserInfoById: getUserInfoById,
     updateUserData: updateUserData,
-    deleteUserById: deleteUserById
+    deleteUserById: deleteUserById,
 }
