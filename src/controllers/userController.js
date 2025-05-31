@@ -1,65 +1,18 @@
-import userService from "../services/userService";
+const userService = require('../services/userService');
 
-let handleLogin = async (req, res) => {
-    let email = req.body.email;
-    let password = req.body.password;
-    if (!email || !password) {
-        return res.status(500).json({
-            errCode: 1,
-            message: "Missing inputs"
-        })
-    }
-    let userData = await userService.handleUserLogin(email, password);
-    return res.status(200).json({ // Trả về thông tin của user - lấy qua api (router) trong postman
-        errCode: userData.errCode,
-        message: userData.errMessage,
-        user: userData.user ? userData.user : {}
-    })
-}
-
+// userController.js
 let handleGetAllUsers = async (req, res) => {
-    let id = req.query.id; // ALL : lấy all; id : lấy theo id
-    if (!id) {
-        return res.status(200).json({
-            errCode: 1,
-            errMessage: "Missing inputs",
-            users: []
-        })
-    }
-    let users = await userService.getAllUsers(id);
-    // console.log(users);
-    return res.status(200).json({
-        errCode: 0,
-        errMessage: "OK",
-        users
-    })
-}
+    let users = await userService.getAllUsers();
+    return res.json({ errCode: 0, users: users });
+};
+
 let handleCreateNewUser = async (req, res) => {
-    let message = await userService.createNewUser(req.body);
-    return res.status(200).json(message);
-}
-
-let handleDeleteUser = async (req, res) => {
-    if (!req.body.id) {
-        return res.status(200).json({
-            errCode: 1,
-            message: "Missing inputs"
-        })
-    }
-    let message = await userService.deleteUser(req.body.id);
-    return res.status(200).json(message);
-}
-
-let handleEditUser = async (req, res) => {
-    let data = await req.body;
-    let message = await userService.updateUserData(data);
-    return res.status(200).json(message)
-}
+    let data = req.body;
+    let result = await userService.createNewUser(data);
+    return res.json(result);
+};
 
 module.exports = {
-    handleLogin: handleLogin,
-    handleGetAllUsers: handleGetAllUsers,
-    handleCreateNewUser: handleCreateNewUser,
-    handleEditUser: handleEditUser,
-    handleDeleteUser: handleDeleteUser
-}
+    handleGetAllUsers,
+    handleCreateNewUser
+};

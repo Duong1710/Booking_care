@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
 // Hàm kết nối với Database
-const sequelize = new Sequelize('hoidanit', 'root', null, {
+const sequelize = new Sequelize('cnpm', 'root', null, {
     host: 'localhost', // Địa chỉ server
     dialect: 'mysql',
     logging: false // + logging = false trong config.json để rút ngắn thông báo hiện dưới terminal thôi
@@ -11,7 +11,7 @@ const sequelize = new Sequelize('hoidanit', 'root', null, {
 let connectDB = async () => {
     try {
         await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
+        console.log('Connection to database has been established successfully.');
     } catch (error) {
         console.error('Unable to connect to the database:', error);
     }
